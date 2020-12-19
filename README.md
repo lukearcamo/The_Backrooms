@@ -1,2 +1,6 @@
 # The_Backrooms
-Renders a a dynamic scene of The Backrooms in your browser. Scene is made with a raymarching fragment shader; only uses THREE.js to render a quad.
+Renders an animated scene of The Backrooms (https://knowyourmeme.com/memes/the-backrooms) in your browser.
+
+The scene fully procedural, all written in a small fragment shader using raymarching.
+This only uses THREE.js to render a quad, so in theory it could run on pure WebGL but I don't want to write verbose code just to set it up.
+To run it, just run the Backrooms.html file in a browser.
