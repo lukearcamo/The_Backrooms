@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Backrooms</title>
+    </head>
+    <style>
+        body { margin: 0; }
+        #canvas { width: 100vw; height: 100vh; outline: none; }
+    </style>
+    <body>
+        <canvas id="canvas" tabindex="0" width="960" height="540"></canvas>
+        <script type="module">
+            import { WebGLRenderer, Scene, OrthographicCamera, Mesh, PlaneBufferGeometry, ShaderMaterial } from "./three.module.js";
+            import { vs, fs } from "./backrooms_fragment_shader.js";
+
+            const renderer = new WebGLRenderer({canvas: document.getElementById("canvas")});
+            const scene = new Scene();
+            const camera = new OrthographicCamera(-1, 1, 1, -1, 0, 1);
+            const quad = new Mesh(new PlaneBufferGeometry(2, 2), new ShaderMaterial({
+                uniforms: {
+                    time: { value: 0 },
+                    aspect: { value: window.innerWidth / window.innerHeight },
+                },
+                vertexShader: vs,
+                fragmentShader: fs
+            }));
+            scene.add(quad);
+            window.addEventListener("resize", () => quad.material.uniforms["aspect"].value = window.innerWidth / window.innerHeight);
+
+            function animate(now) {
+                quad.material.uniforms["time"].value = now / 1000;
+                renderer.render(scene, camera);
+                requestAnimationFrame(animate);
+            }
+            requestAnimationFrame(animate);
+        </script>
+    </body>
+</html>
