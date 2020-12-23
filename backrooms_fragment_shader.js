@@ -10,7 +10,6 @@ varying vec2 UV;
 
 float rand(float q) { q = fract(q * 0.1031); q *= q + 33.33; return fract((q + q) * q); }
 
-float sdfPlane(vec3 p, vec3 n, float c) { return dot(p, n) + c; }
 float sdfBox(vec3 p, vec3 dim) {
     vec3 q = abs(p) - dim;
     return length(max(q, 0.0)) + min(max(q.x, max(q.y, q.z)), 0.0);
