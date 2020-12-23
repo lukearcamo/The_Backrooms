@@ -14,8 +14,8 @@ float sdfBox(vec3 p, vec3 dim) {
     vec3 q = abs(p) - dim;
     return length(max(q, 0.0)) + min(max(q.x, max(q.y, q.z)), 0.0);
 }
-float sdfBox2D(vec2 p, vec2 b) {
-    vec2 q = abs(p) - b;
+float sdfBox2D(vec2 p, vec2 dim) {
+    vec2 q = abs(p) - dim;
     return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0);
 }
 float infinite1D(float p, float cellSize) {
